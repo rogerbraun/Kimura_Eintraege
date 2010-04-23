@@ -3,8 +3,12 @@
   %head
     ='<meta content="text/html; charset=utf-8" http-equiv="Content-Type">'
     %title 和独古語辞典
-    =stylesheet_link_tag("screen","print", "fancy-type/screen")
-  
+    =stylesheet_link_tag("screen","print", "fancy-type/screen", "Autocompleter")
+    =javascript_include_tag("http://www.google.com/jsapi")
+    :javascript
+      google.load("mootools", "1.2.4");
+    =javascript_include_tag("Autocompleter","Autocompleter.Local","Autocompleter.Request","Observer")
+       
   %body
     .container
       =yield

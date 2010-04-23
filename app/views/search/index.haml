@@ -5,7 +5,7 @@
 .span-24.last
   - form_tag "/search", :class => "inline", :method => "get" do
     =label_tag :q, :class => "first"
-    =text_field_tag :q, :value => params[:q], :class => "title"
+    =text_field_tag :q, :value => params[:q], :class => "title",:id => "q"
 %hr.space
 - if @results != nil
   .span-24.last
@@ -22,3 +22,7 @@
           %tr
             %td= result.lemma
             %td= result.body
+:javascript
+  window.addEvent("domready", function() {
+    new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q"});
+  });

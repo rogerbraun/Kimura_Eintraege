@@ -13,6 +13,11 @@ Florenz.controllers :search do
     end
     render "search/index"
   end
+
+  post "result.js" do
+    Entry.all(:lemma.like => "#{params[:q]}%").map(&:lemma).to_json
+   
+  end 
   #   case content_type
   #     when :js then ...
   #     else ...
