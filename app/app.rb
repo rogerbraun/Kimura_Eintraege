@@ -32,5 +32,8 @@ class Florenz < Padrino::Application
   #     render 'errors/404'
   #   end
   #
+  get :index do
+    redirect "/search"
+  end
 
 end
