@@ -1,0 +1,38 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:entries, :index)
+      %li=link_to pat(:new), url(:entries, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:entry)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:entry, :id)
+          %th=mat(:entry, :lemma)
+          %th=mat(:entry, :kanji)
+          %th=mat(:entry, :body)
+          %th=mat(:entry, :xml)
+          %th=mat(:entry, :checked)
+          %th.last="&nbsp;"
+        -@entries.each do |entry|
+          %tr
+            %td.first=entry.id
+            %td=entry.lemma
+            %td=entry.kanji
+            %td=entry.body
+            %td=entry.xml
+            %td=entry.checked
+            %td.last
+              =button_to pat(:edit), url(:entries, :edit, :id => entry.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:entries, :destroy, :id => entry.id), :method => :delete, :class => :button_to
+        %tr
+          %td.first=link_to("<<", url(:entries, :index, :offset => @offset - 10))
+          %td.last=link_to(">>", url(:entries, :index, :offset => @offset + 10))
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

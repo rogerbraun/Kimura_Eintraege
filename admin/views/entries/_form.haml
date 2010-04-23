@@ -1,0 +1,34 @@
+.group
+  =f.label :lemma
+  =f.error_message_on :lemma
+  =f.text_field :lemma, :class => :text_field
+  %span.description Das Wort in Romaji
+
+.group
+  =f.label :kanji
+  =f.error_message_on :kanji
+  =f.text_field :kanji, :class => :text_field
+  %span.description Die Kanji 
+
+.group
+  =f.label :body
+  =f.error_message_on :body
+  =f.text_area :body, :class => :text_area
+  %span.description Der Eintrag selbst 
+  
+.group
+  =f.label :xml
+  =f.error_message_on :xml
+  =f.text_area :xml, :class => :text_area
+  %span.description Unsere XML-Version.
+
+.group
+  =f.label :checked
+  =f.error_message_on :checked
+  =f.check_box :checked, :class => :check_box
+  %span.description Ist der Eintrag schon gecheckt?
+
+
+.group.navform.wat-cf
+  =f.submit pat(:save), :class => :button
+  =f.submit pat(:cancel), :onclick => "window.location='#{url(:entries, :index)}';return false", :class => :button
