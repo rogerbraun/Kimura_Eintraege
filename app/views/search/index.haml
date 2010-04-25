@@ -24,5 +24,5 @@
           %td= result.body
 :javascript
   window.addEvent("domready", function() {
-    new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q", "onSelection" : function () {document.forms["search_form"].submit();} });
+    new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q" });
   });
