@@ -7,21 +7,21 @@
     =label_tag :q, :class => "first"
     =text_field_tag :q, :value => params[:q], :class => "title",:id => "q"
 %hr.space
-- if @results != nil
-  .span-24.last
-    =flash_tag :notice
-    %table{:summary => "Die Suchergebnisse", :border => "0", :cellspacing => "0", :cellpadding => "0"}
-      %caption
-        %em Suchergebnisse
-      %thead
+-# if @results != nil
+.span-24.last
+  =flash_tag :notice
+  %table{:summary => "Die Suchergebnisse", :border => "0", :cellspacing => "0", :cellpadding => "0"}
+    %caption
+      %em Suchergebnisse
+    %thead
+      %tr
+        %th.span-4 Lesung
+        %th.span-20.last Übersetzung
+    %tbody
+      -@results.andand.each do |result|
         %tr
-          %th.span-4 Lesung
-          %th.span-20.last Übersetzung
-      %tbody
-        -@results.andand.each do |result|
-          %tr
-            %td= result.lemma
-            %td= result.body
+          %td= result.lemma
+          %td= result.body
 :javascript
   window.addEvent("domready", function() {
     new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q", "onSelection" : function () {document.forms["search_form"].submit();} });
