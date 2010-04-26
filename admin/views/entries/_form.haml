@@ -13,13 +13,13 @@
 .group
   =f.label :body
   =f.error_message_on :body
-  =f.text_area :body, :class => :text_area
+  =f.text_area :body, :class => :text_area, :rows => "20"
   %span.description Der Eintrag selbst 
   
 .group
   =f.label :xml
   =f.error_message_on :xml
-  =f.text_area :xml, :class => :text_area
+  =f.text_area :xml, :class => :text_area, :rows => "20"
   %span.description Unsere XML-Version.
 
 .group
