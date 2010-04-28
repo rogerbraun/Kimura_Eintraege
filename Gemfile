@@ -9,6 +9,7 @@ gem 'thin' # or mongrel
 gem 'haml'
 gem 'data_objects'
 gem 'do_sqlite3'
+gem 'do_postgres'
 gem 'datamapper'
 
 # Test requirements
