@@ -5,6 +5,7 @@ Admin.controllers :entries do
     @offset = params[:offset].to_i
     @offset = 0 if @offset < 0
     @entries = Entry.all(:limit => 10, :offset => @offset)
+    @count = {:all => Entry.all.count, :done => Entry.all(:checked => true).count} 
     render 'entries/index'
   end
 
@@ -25,6 +26,7 @@ Admin.controllers :entries do
 
   get :edit, :with => :id do
     @entry = Entry.get(params[:id])
+    store_location!
     render 'entries/edit'
   end
 
@@ -32,7 +34,15 @@ Admin.controllers :entries do
     @entry = Entry.get(params[:id])
     if @entry.update(params[:entry])
       flash[:notice] = 'Entry was successfully updated.'
-      redirect url(:entries, :edit, :id => @entry.id)
+      #redirect url(:entries, :edit, :id => @entry.id)
+      user = current_account
+      user.entries << @entry
+      user.save
+      if session[:return_to] then
+        redirect session[:return_to]
+      else
+        redirect url(:entries, :index)
+      end
     else
       render 'entries/edit'
     end
@@ -45,6 +55,7 @@ Admin.controllers :entries do
     else
       flash[:error] = 'Impossible destroy Entry!'
     end
-    redirect url(:entries, :index)
+    #redirect url(:entries, :index)
+    redirect env['HTTP_REFERER']
   end
 end

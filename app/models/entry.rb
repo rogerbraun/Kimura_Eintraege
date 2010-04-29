@@ -9,4 +9,6 @@ class Entry
   property :checked, Boolean
   property :xml, Text
 
+  belongs_to :account, :required => false
+
 end

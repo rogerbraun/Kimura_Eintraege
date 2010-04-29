@@ -1,4 +1,7 @@
+#encoding: utf-8
+
 Florenz.controllers :search do
+
   # get :index, :map => "/foo/bar" do
   #   session[:foo] = "bar"
   #   render 'index'

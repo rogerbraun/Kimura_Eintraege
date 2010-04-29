@@ -1,11 +1,15 @@
-%hr.space
+.span-23 
+  %hr.space
+.span-1.last.alt.small
+  %a{:href => "/admin"} Login  
 %h1 和独古語辞典
 %hr
 %h2.alt Ein Wörterbuch für klassisches Japanisch
 .span-24.last
   - form_tag "/search", :class => "inline", :method => "get",:id => "search_form" do
     =label_tag :q, :class => "first"
-    =text_field_tag :q, :value => params[:q], :class => "title",:id => "q"
+    =text_field_tag :q, :value => params[:q].andand.force_encoding("UTF-8"), :class => "title",:id => "q"
+    -#=text_field_tag :q, :value => params[:q] ,:class => "title",:id => "q"
 %hr.space
 -# if @results != nil
 .span-24.last
@@ -21,7 +25,7 @@
       -@results.andand.each do |result|
         %tr
           %td= result.lemma
-          %td= result.body
+          %td= result.body.gsub("\n","<br>")
 :javascript
   window.addEvent("domready", function() {
     new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q" });

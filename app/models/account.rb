@@ -12,6 +12,8 @@ class Account
   property :salt,             String
   property :role,             String
 
+  has n, :entries
+
   # Validations
   validates_present      :email, :role
   validates_present      :password,                          :if => :password_required
