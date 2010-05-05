@@ -2,9 +2,9 @@
   %hr.space
 .span-1.last.alt.small
   %a{:href => "/admin"} Login  
-%h1 和独古語辞典
+%h1.jap_heading 和独古語辞典
 %hr
-%h2.alt Ein Wörterbuch für klassisches Japanisch
+%h2.alt.main_heading Ein Wörterbuch für klassisches Japanisch
 .span-24.last
   - form_tag "/search", :class => "inline", :method => "get",:id => "search_form" do
     =label_tag :q, :class => "first"
@@ -19,13 +19,15 @@
       %em Suchergebnisse
     %thead
       %tr
-        %th.span-4 Lesung
+        %th.span-1 ID
+        %th.span-3 Lesung
         %th.span-20.last Übersetzung
     %tbody
       -@results.andand.each do |result|
         %tr
-          %td= result.lemma
-          %td= result.body.gsub("\n","<br>")
+          %td.lemma= result.id
+          %td.lemma= result.lemma
+          %td.entry= result.body
 :javascript
   window.addEvent("domready", function() {
     new Autocompleter.Request.JSON("q","/search/result.js", { "postVar": "q" });

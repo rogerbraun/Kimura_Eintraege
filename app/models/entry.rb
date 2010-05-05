@@ -8,6 +8,7 @@ class Entry
   property :body, Text
   property :checked, Boolean
   property :xml, Text
+  property :in_bearbeitung, Boolean, :default => false
 
   belongs_to :account, :required => false
 

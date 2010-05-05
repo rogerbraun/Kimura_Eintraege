@@ -11,6 +11,7 @@
         %h1=link_to "Wadokukogo Admin", url(:base_index)
         #user-navigation
           %ul.wat-cf
+            %li=link_to pat(:search), "/"
             %li=link_to pat(:profile), url(:accounts, :edit, :id => current_account.id)
             %li=link_to pat(:logout), url(:sessions, :destroy), :method => :delete
         #main-navigation

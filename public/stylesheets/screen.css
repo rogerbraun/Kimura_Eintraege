@@ -256,3 +256,5 @@ hr.space {background:#fff;color:#fff;visibility:hidden;}
 .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
 .clearfix, .container {display:block;}
 .clear {clear:both;}
+.lemma {font-size: 2em;text-align:right;vertical-align:top;}
+.entry {font-size: 1.5em;text-align:justify;}
