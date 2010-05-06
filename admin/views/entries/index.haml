@@ -26,7 +26,7 @@
             -#%td=entry.kanji
             %td=entry.body
             %td=entry.xml
-            %td=entry.checked
+            %td=entry.checked ? "Überprüft!" : "Nicht Überprüft!"
             %td=entry.account ? entry.account.name : "Niemand"
             %td=entry.in_bearbeitung ? "Ja" : "Nein"
             %td.last
