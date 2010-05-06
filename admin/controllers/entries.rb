@@ -50,9 +50,11 @@ Admin.controllers :entries do
     if @entry.update(params[:entry])
       flash[:notice] = 'Entry was successfully updated.'
       #redirect url(:entries, :edit, :id => @entry.id)
-      user = current_account
-      user.entries << @entry
-      user.save
+      unless @entry.user then
+        user = current_account
+        user.entries << @entry
+        user.save
+      end
       @entry.in_bearbeitung = false
       @entry.save
       if session[:return_to] then
