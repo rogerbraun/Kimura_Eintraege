@@ -50,7 +50,7 @@ Admin.controllers :entries do
     if @entry.update(params[:entry])
       flash[:notice] = 'Entry was successfully updated.'
       #redirect url(:entries, :edit, :id => @entry.id)
-      unless @entry.user then
+      unless @entry.account then
         user = current_account
         user.entries << @entry
         user.save
