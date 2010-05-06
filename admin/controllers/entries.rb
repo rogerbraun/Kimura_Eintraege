@@ -26,8 +26,23 @@ Admin.controllers :entries do
 
   get :edit, :with => :id do
     @entry = Entry.get(params[:id])
-    store_location!
-    render 'entries/edit'
+    if @entry.in_bearbeitung then
+      flash[:error] = "Eintrag wird zur Zeit bearbeitet!"
+      redirect back
+    else
+      @entry.in_bearbeitung = true
+      @entry.save
+      store_location!
+      render 'entries/edit'
+    end
+  end
+
+  put :befreien, :with => :id do
+    entry = Entry.get(params[:id])
+    entry.in_bearbeitung = false
+    entry.save
+    flash[:notice] = "Eintrag wurde befreit!"
+    redirect back
   end
 
   put :update, :with => :id do
@@ -38,6 +53,8 @@ Admin.controllers :entries do
       user = current_account
       user.entries << @entry
       user.save
+      @entry.in_bearbeitung = false
+      @entry.save
       if session[:return_to] then
         redirect session[:return_to]
       else

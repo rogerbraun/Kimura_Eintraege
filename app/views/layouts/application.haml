@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 %html
   %head
-    ='<meta content="text/html; charset=utf-8" http-equiv="Content-Type">'
+    ='<meta charset="utf-8">'
     %title 和独古語辞典
     =stylesheet_link_tag("screen", "fancy-type/screen", "Autocompleter")
     =javascript_include_tag("http://www.google.com/jsapi")
@@ -10,5 +10,6 @@
     =javascript_include_tag("Autocompleter","Autocompleter.Local","Autocompleter.Request","Observer")
        
   %body
+    =javascript_include_tag("http://fast.fonts.com/jsapi/2783147c-8b49-424b-ac03-1c5666545069.js")
     .container
       =yield
